@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "#f5f5f5",
+  "title": "Annual Unemployment Rate by gender ",
+  "data": { "url": "https://raw.githubusercontent.com/linhtran25/Visualisation2/main/data3.csv"},
+  "transform": [
+    
+    {"calculate": "datum.Sex == 2 ? 'Female' : 'Male'", "as": "gender"}
+  ],
+  "width": {"step": 12},
+  "mark": "bar",
+  "encoding": {
+    "column": {
+      "field": "Year", "type": "ordinal", "spacing": 10,
+      "header": {"orient": "bottom"}
+    },
+    "y": {
+      "field": "unemployment",
+      "title": "Annual Unemployment Rate (%)",
+      "axis": {"grid": false}
+    },
+    "x": {
+      "field": "gender",
+      "axis": null
+    },
+    "color": {
+      
+      "field": "gender",
+      "scale": {"domain": [0,140]}
+    },
+    "tooltip": [
+      {
+        "field": "unemployment", 
+        "aggregate": "average",
+        "title": "Annual Unemployment Rate (%)", 
+        "type": "quantitative", 
+        "format": ".2f"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": null},
+    "axis": {
+        "grid": false,
+        "labelFontSize": 13,
+        "titleFontSize": 15},
+    "font": "Maven Pro"
+  }
+  }
+

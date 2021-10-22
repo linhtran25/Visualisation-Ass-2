@@ -1,0 +1,142 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Annual Unemployment Rate by education level ",
+  "background": "#F0F8FF",
+  "params": [
+  
+    {
+        "name": "Region_selection",
+        "value": "East Asia & Pacific",
+        "bind": {
+          "input": "select",
+          "options": [
+            
+            "East Asia & Pacific",
+            "Europe & Central Asia",
+            "Latin America & Caribbean",
+            "Middle East & North Africa",
+            "North America",
+            "South Asia",
+            "Sub-Saharan Africa"
+          ],
+          "labels": [
+            
+            "East Asia & Pacific",
+            "Europe & Central Asia",
+            "Latin America & Caribbean",
+            "Middle East & North Africa",
+            "North America",
+            "South Asia",
+            "Sub-Saharan Africa"
+          ],
+          "name": "Region selection: "
+        }
+      }
+      
+      
+],
+"hconcat": [
+  {
+    "width": 600,
+    "height": 300,
+    "data": {"url": "https://raw.githubusercontent.com/linhtran25/Visualisation2/main/Level.csv"},
+     "transform": [
+        {"filter": "Region_selection == null || datum.Region == Region_selection"}
+        ],
+  
+  
+  "encoding": {
+    "x": {
+        "field": "Year",
+        "axis": {"labelAngle": 0}}},
+        "layer": [
+    {
+    "encoding": {
+    "y": {
+        "field": "Unemployment", 
+        "type": "quantitative", 
+        "aggregate": "average",
+        "title": "Annual Unemployment Rate (%)"
+        },
+    "color": {
+        "field": "Education Level",
+        "type": "nominal",
+        "scale": {
+        "domain": [
+          "Advanced Education",
+          "Basic Education",
+          "Intermediate Education"
+        ],
+        "range": [
+            "#4575b4",
+            "#d73027",
+            "#fc8d59"
+            
+        ]
+        },
+        "legend": {
+            "titleFontSize": 15,
+            "labelFontSize": 14,
+            "orient": "none",
+            "direction": "horizontal",
+            "legendX": 150,
+            "legendY": 370,
+            "titleAnchor": "start",
+            "titleOrient": "left",
+            "columns": 3,
+            "columnPadding": 10
+        }}
+    },
+    "layer": [
+    {"mark": 
+        {
+        "type": "line",
+        "size": 5}},
+    {"transform": [
+        {"filter": 
+        {"param": "hover", 
+            "empty": false}}],
+        "mark": "point"}
+    ]
+},
+{
+    "transform": [
+    {"pivot": "Education Level", "value": "Unemployment", "groupby": ["Year"], "op": "average"}
+    ],
+    "mark": {
+    "type": "rule",
+    "size": 5},
+    "encoding": {
+    "opacity": {
+        "condition": {"value": 0.1, "param": "hover", "empty": false},
+        "value": 0
+    },
+    "tooltip": [
+      {"field": "Advanced Education", "type": "quantitative", "title": "Advanced Education Unemployment Rate)", "format": ".2f"},
+      {"field": "Basic Education", "type": "quantitative", "title": "Basic Education Unemployment Rate", "format": ".2f"},
+      {"field": "Intermediate Education", "type": "quantitative", "title": "Intermediate Educatio Unemployment Rate", "format": ".2f"}
+      
+    ]
+    },
+    "params": [{
+    "name": "hover",
+    "select": {
+        "type": "point",
+        "fields": ["Year"],
+        "nearest": true,
+        "on": "mouseover",
+        "clear": "mouseout"
+    }
+    }]
+}
+]
+}
+],
+"config": {
+"font": "Maven Pro",
+"axis": {
+  "labelFontSize": 14,
+  "titleFontSize": 15
+}
+}
+}

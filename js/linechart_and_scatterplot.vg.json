@@ -1,0 +1,243 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "#F0F8FF",
+  "params": [
+  {
+    "name": "Gender_selection",
+    "value": "Male",
+    "bind": {
+      "input": "select",
+      "options": [
+        
+        "Male",
+        "Female"
+      ],
+      "labels": [
+        
+        "Male",
+        "Female"
+      ],
+      "name": "Gender selection: "
+    }
+  }],
+  "hconcat": [
+    {
+      "width": 500,
+      "height": 300,
+      "data": {"url": "https://raw.githubusercontent.com/linhtran25/Visualisation2/main/data7.csv"},
+       "transform": [
+          {"filter": "Gender_selection == null || datum.Sex == Gender_selection"}
+          ],
+      "encoding": {
+          "x": {
+              "field": "Year",
+              "axis": {"labelAngle": 0}}},
+              "layer": [
+          {
+          "encoding": {
+          "y": {
+              "field": "Unemployment", 
+              "type": "quantitative", 
+              "aggregate": "average",
+              "title": "Annual Unemployment Rate (%)"},
+          "color": {
+              "field": "Region",
+              "type": "nominal",
+              "scale": {
+              "domain": [
+                "East Asia & Pacific",
+                "Europe & Central Asia",
+                "Latin America & Caribbean",
+                "Middle East & North Africa",
+                "North America",
+                "South Asia",
+                "Sub-Saharan Africa"
+              ],
+              "range": [
+                  "#b2182b",
+                  "#ef8a62",
+                  "#fddbc7",
+                  "#fee090",
+                  "#5ab4ac",
+                  "#67a9cf",
+                  "#2166ac"
+              ]
+              },
+              "legend": {
+                  "titleFontSize": 15,
+                  "labelFontSize": 14,
+                  "orient": "none",
+                  "direction": "horizontal",
+                  "legendX": 150,
+                  "legendY": 370,
+                  "titleAnchor": "start",
+                  "titleOrient": "left",
+                  "columns": 3,
+                  "columnPadding": 10
+              }}
+          },
+          "layer": [
+          {"mark": 
+              {
+              "type": "line",
+              "size": 5}},
+          {"transform": [
+              {"filter": 
+              {"param": "hover", 
+                  "empty": false}}],
+              "mark": "point"}
+          ]
+      },
+      {
+          "transform": [
+          {"pivot": "Region", "value": "Unemployment", "groupby": ["Year"], "op": "average"}
+          ],
+          "mark": {
+          "type": "rule",
+          "size": 5},
+          "encoding": {
+          "opacity": {
+              "condition": {"value": 0.5, "param": "hover", "empty": false},
+              "value": 0
+          },
+          "tooltip": [
+            {"field": "East Asia & Pacific", "type": "quantitative", "title": "East Asia & Pacific Unemployment Rate)", "format": ".2f"},
+            {"field": "Europe & Central Asia", "type": "quantitative", "title": "Europe & Central Asia Unemployment Rate", "format": ".2f"},
+            {"field": "Latin America & Caribbean", "type": "quantitative", "title": "Latin America & Caribbean Unemployment Rate", "format": ".2f"},
+            {"field": "Middle East & North Africa", "type": "quantitative", "title": "Middle East & North Africa  Unemployment Rate", "format": ".2f"},
+            {"field": "South Asia", "type": "quantitative", "title": "South Asia Unemployment Rate", "format": ".2f"},
+            {"field": "Sub-Saharan Africa", "type": "quantitative", "title": "Sub-Saharan Africa Unemployment Rate)", "format": ".2f"},
+            {"field": "North America", "type": "quantitative", "title": "North America Unemployment Rate", "format": ".2f"}
+          ]
+          },
+          "params": [{
+          "name": "hover",
+          "select": {
+              "type": "point",
+              "fields": ["Year"],
+              "nearest": true,
+              "on": "mouseover",
+              "clear": "mouseout"
+          }
+          }]
+      }
+      ]
+      },
+      {
+      "width": 450,
+      "height": 300,
+      "data": {
+      "url": "https://raw.githubusercontent.com/linhtran25/Visualisation2/main/datawider.csv"
+      },
+      
+      "transform": [
+          
+          {"filter": "Gender_selection == null || datum.Sex == Gender_selection"}
+      ],
+      "layer": [
+          {
+              "data": {
+                "values": [
+                  {"y": "0", "x": "0"},
+                  {"y": "150", "x": "150"}
+                  ]
+              },
+              "mark": {"type": "line", "strokeDash": [10, 5], "color": "#F0F8FF"},
+               "encoding": {
+                "x": {"field": "x", "type": "quantitative"},
+                "y": {"field": "y", "type": "quantitative"}
+              }},
+          {
+          "params": [{
+          "name": "grid",
+          "select": "interval",
+          "bind": "scales"
+      }],
+          "mark": {
+          "type": "circle"},
+          "encoding": {
+          "size":{
+            "field": "Income2019",
+            "type": "quantitative",
+            "scale": {
+              "type": "threshold",
+              "domain": [10000,20000,30000,40000,50000],
+              "range": [20,50,150,200,300]
+            },
+            "legend": {
+              "title": "GDP per capita",
+              "format": ".1s",
+              "titleFontSize": 15,
+              "labelFontSize": 14,
+              "symbolOpacity": 0.5
+            }
+          },
+          "x": {
+              "field": "2019",
+              "type": "quantitative",
+              "title": "Unemployment rate in 2019",
+              "scale": {"domain": [0,40]}
+          },
+          "y": {
+              "field": "2009",
+              "type": "quantitative",
+              "title": "Unemployment rate in 2009",
+              "axis": {"titleX": -30},
+              "scale": {"domain": [0,40]}
+          },
+          "color": {
+              "field": "Region",
+              "type": "nominal"
+          },
+          "opacity": {"value": 1},
+          "tooltip": [
+              {"field": "Country", "type": "nominal"},
+              {"field": "2009", "type": "quantitative", "title": "2009 Unemployment rate", "format": ".2f"},
+              {"field": "2019", "type": "quantitative", "title": "2019 Unemployment rate", "format": ".2f"},
+              {"field": "Income2019", "type": "quantitative", "title": "GDP per capita", "format": ",.2f"}
+          ]
+      }
+      },
+      {
+          "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": 10,
+          "fontSize": 14,
+          "fontStyle": "italic"
+          },
+          "encoding": {
+          "x": {
+          "field": "2019",
+          "type": "quantitative"
+          },
+          "y": {
+          "field": "2009",
+          "type": "quantitative"
+          },
+          "text": {"field": "Country", "type": "nominal"},
+          "color": {
+              "field": "Region",
+              "type": "nominal"
+          },
+          "opacity": {
+              "condition": {
+              "test": "datum.Country == 'Kosovo' || datum.Country == 'North Macenonia' || datum.Country == 'Australia' || datum.Country == 'South Africa' || datum.Country == 'Spain' || datum.Country == 'French' ||  datum.Country == 'Lesotho'",
+              "value": 1
+              },
+              "value": 0
+          }
+        }
+      }
+      ]
+      }
+      ],
+"config": {
+  "font": "Maven Pro",
+  "axis": {
+    "labelFontSize": 14,
+    "titleFontSize": 15
+}
+}
+}

@@ -1,0 +1,108 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Annual Unemployment Rate by gender ",
+  "background": "#F0F8FF",
+  "params": [
+    
+    {
+        "name": "Region_selection",
+        "value": "East Asia & Pacific",
+        "bind": {
+          "input": "select",
+          "options": [
+            
+            "East Asia & Pacific",
+            "Europe & Central Asia",
+            "Latin America & Caribbean",
+            "Middle East & North Africa",
+            "North America",
+            "South Asia",
+            "Sub-Saharan Africa"
+          ],
+          "labels": [
+            
+            "East Asia & Pacific",
+            "Europe & Central Asia",
+            "Latin America & Caribbean",
+            "Middle East & North Africa",
+            "North America",
+            "South Asia",
+            "Sub-Saharan Africa"
+          ],
+          "name": "Region selection: "
+        }
+      }
+      
+      
+],
+  "data": {
+      "url": "https://raw.githubusercontent.com/linhtran25/Visualisation2/main/data8.csv"
+  },
+  "transform": [
+      {
+          "calculate": "datum.Sex == 2 ? 'Female' : 'Male'",
+          "as": "gender"
+      },
+      
+      {"filter": "Region_selection == null || datum.Region == Region_selection"}
+      
+  ],
+  "width": {
+      "step": 16
+  },
+  "mark": "bar",
+  "encoding": {
+      "column": {
+          "field": "Year",
+          "type": "ordinal",
+          "spacing": 10,
+          "header": {
+              "orient": "bottom"
+          }
+      },
+      "y": {
+          "aggregate": "average",
+          "field": "Unemployment",
+          "title": "Annual Unemployment Rate (%)",
+          "axis": {
+              "grid": false
+          }
+      },
+      "x": {
+          "field": "gender",
+          "axis": null
+      },
+      "color": {
+          "field": "gender",
+          "scale": {
+              "range": [
+                  "#ef8a62",
+                  "#67a9cf"
+              ]
+          }
+      },
+      "tooltip": [
+        {
+          "field": "Sex",
+          "type": "nominal",
+          "title": "Gender"
+        },
+        
+        {
+          "field": "Unemployment", 
+          "aggregate": "average", 
+          "title": "Annual Unemployment Rate (%)",
+          "type": "quantitative", 
+          "format": ".2f"}
+      ]
+  },
+  "config": {
+    "view": {"stroke": null},
+    "axis": {
+        "grid": false,
+        "labelFontSize": 13,
+        "titleFontSize": 12
+        },
+    "font": "Maven Pro"
+  }
+}

@@ -1,0 +1,178 @@
+
+h1{
+    font-weight: 700;
+    text-align: center;
+    padding: 40px;
+    font-family: 'Maven Pro', sans-serif;
+    text-align: center;
+    background-color: #ADD8E6;
+    font-size: 50px;
+}
+
+h6{
+    font-family: 'Maven Pro', sans-serif;
+    font-style: italic;
+    font-weight: normal;
+    background-color: #ADD8E6;
+    font-size: 15px;
+    text-align: center;
+    margin-top: -50px;
+    padding-bottom: 20px;
+}
+
+h2{
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 25px;
+    padding: 10px;
+    background-color: #cfe7f1;
+    text-align: center;
+    
+}
+
+h4{
+    font-family: 'Maven Pro', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: left;
+    background-color: #F0F8FF;
+    margin-inline: px;
+    padding: 5px;
+    margin-top: -10px;
+}
+
+h5{
+    font-family: 'Maven Pro', sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    background-color: #ADD8E6;
+    font-size: 16px;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: -20px;
+}
+.container{
+    width: 100%;
+}
+
+.vega-bindings{
+    font-family: 'Maven Pro', sans-serif;
+    margin-left: 200px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+p{
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 16px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.vis-container {
+    width: 100%;
+    align-self: center;
+}
+
+.pure-g {
+    margin-bottom: 25px;
+    align-self: center;
+}
+
+.page {
+    width: 1200px;
+    background-color: #F0F8FF;
+    margin: auto;
+    padding: 50px;
+    padding-top: 35px;
+}
+
+.description {
+    margin-left: 20px;
+    text-indent: 10px;
+    font-size: 15px;
+    
+}
+
+.description_high {
+    color: #cb1b16;
+    font-weight: 500;
+}
+
+.description_decrease {
+    color: #1368aa;
+    font-weight: 500;
+}
+
+.small-font {
+    font-size: 14px;
+}
+
+.center {
+    text-align: center;
+    margin-inline: 50px;
+}
+
+.emphasise {
+    font-size: 18px;
+    color: #fcac98;
+    font-weight: 500;
+}
+
+.decrease {
+    font-size: 18px;
+    color: #1368aa;
+    font-weight: 700;
+}
+
+.increase {
+    font-size: 18px;
+    color: #cb1b16;
+    font-weight: 700;
+}
+
+.ad {
+    font-size: 17px;
+    color: #4575b4;
+    font-weight: 500;
+}
+
+.in {
+    font-size: 17px;
+    color: #fc8d59;
+    font-weight: 500;
+}
+
+.bs {
+    font-size: 17px;
+    color: #d73027;
+    font-weight: 500;
+}
+
+.ma {
+    font-size: 17px;
+    color: #67a9cf;
+    font-weight: 500;
+}
+
+.fe {
+    font-size: 17px;
+    color: #ef8a62;
+    font-weight: 500;
+}
+
+.eu {
+    font-size: 17px;
+    color: #ef8a62;
+    font-weight: 500;
+}
+
+.as {
+    font-size: 17px;
+    color: #b2182b;
+    font-weight: 500;
+}
+
+.medium {
+    font-weight: 500;
+}
